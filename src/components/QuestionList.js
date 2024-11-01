@@ -21,7 +21,7 @@ function QuestionList() {
       <h1>Quiz Questions</h1>
       <ul>
         {questions.map((q) => (
-          <QuestionItem question={q} onDelete={onDelete} />
+          <QuestionItem key={q.id} question={q} onDelete={onDelete} />
         ))}
       </ul>
     </section>
@@ -29,3 +29,4 @@ function QuestionList() {
 }
 
 export default QuestionList;
+
