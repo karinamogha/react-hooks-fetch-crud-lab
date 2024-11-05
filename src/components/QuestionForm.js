@@ -13,15 +13,14 @@ function QuestionForm(props) {
   function handleChange(event) {
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.name === "correctIndex" ? Number(event.target.value) : event.target.value,
     });
   }
-
   function handleSubmit(event) {
     event.preventDefault();
     console.log(formData);
-
-    fetch(" http://localhost:4000/questions", {
+  
+    fetch("http://localhost:4000/questions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,9 +37,10 @@ function QuestionForm(props) {
       }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log(data))
+      .catch((error) => console.error('Error:', error)); 
   }
-
+  
   return (
     <section>
       <h1>New Question</h1>
